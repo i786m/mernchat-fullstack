@@ -61,8 +61,11 @@ db.once('open', () => {
   });
 });
 
+//priority serve of static files
+app.use(express.static(path.resolve(__dirname, '../front-end/build')));
+
 //api  will be migrated to routes folder and pointed as such
-app.get('/', (req, res) =>
+app.get('*', (req, res) =>
   res
     .status(200)
     .sendFile(path.resolve(__dirname, '../front-end/build/', 'index.html'))
