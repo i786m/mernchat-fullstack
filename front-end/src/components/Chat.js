@@ -18,8 +18,8 @@ const Chat = ({ messages }) => {
     e.preventDefault();
     await axios.post('/messages/new', {
       message: input,
-      name: 'imran(names to be updated via auth)',
-      timestamp: 'A time stamp',
+      name: 'Users name',
+      timestamp: 'Message time',
       received: false,
     });
 

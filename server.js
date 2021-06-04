@@ -62,13 +62,13 @@ db.once('open', () => {
 });
 
 //priority serve of static files
-app.use(express.static(path.resolve(__dirname, '../front-end/build')));
+app.use(express.static(path.resolve('/', '../front-end/build')));
 
 //api  will be migrated to routes folder and pointed as such
 app.get('*', (req, res) =>
   res
     .status(200)
-    .sendFile(path.resolve(__dirname, '../front-end/build/', 'index.html'))
+    .sendFile(path.resolve('/', '../front-end/build/', 'index.html'))
 );
 // app.get('*', (request, response) {
 //   response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
