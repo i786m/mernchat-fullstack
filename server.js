@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import Messages from './back-end/models/Messages.js';
 import Pusher from 'pusher';
 import cors from 'cors';
+import path from 'path';
 
 // env file config
 dotenv.config({ path: './config/.env' });
@@ -61,7 +62,11 @@ db.once('open', () => {
 });
 
 //api  will be migrated to routes folder and pointed as such
-app.get('/', (req, res) => res.status(200).sendFile('../front-end/build/'));
+app.get('/', (req, res) =>
+  res
+    .status(200)
+    .sendFile(path.resolve(__dirname, '../front-end/build/', 'index.html'))
+);
 // app.get('*', (request, response) {
 //   response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
 // });
