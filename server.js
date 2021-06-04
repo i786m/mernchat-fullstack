@@ -61,8 +61,10 @@ db.once('open', () => {
 });
 
 //api  will be migrated to routes folder and pointed as such
-app.get('/', (req, res) => res.status(200).send('Hello World!'));
-
+app.get('/', (req, res) => res.status(200).sendFile('../front-end/build/'));
+// app.get('*', (request, response) {
+//   response.sendFile(path.resolve(__dirname, '../react-ui/build', 'index.html'));
+// });
 // need to handle main page and auth routes here
 
 app.get('/messages/sync', (req, res) => {
