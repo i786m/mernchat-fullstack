@@ -5,7 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": " node server.js"
+    "start": " cd back-end/ && node server.js"
   },
   "cacheDirectories": [
     "node_modules",
