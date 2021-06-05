@@ -5,8 +5,7 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon server.js",
-    "build": "cd front-end/ && npm install && npm run build"
+    "start": " node server.js"
   },
   "cacheDirectories": [
     "node_modules",
