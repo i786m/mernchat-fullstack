@@ -1,4 +1,3 @@
-/* eslint-disable array-callback-return */
 import { Avatar, IconButton } from '@material-ui/core';
 import {
   AttachFile,
@@ -7,11 +6,24 @@ import {
   MoreVert,
   SearchOutlined,
 } from '@material-ui/icons';
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Chat.css';
 import axios from '../axios';
 
 const Chat = ({ messages }) => {
+  //room avatar
+  const [seed, setSeed] = useState('');
+  useEffect(() => {
+    setSeed(Math.ceil(Math.random() * 100000));
+  }, []);
+  //scroll to bottom
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+  useEffect(scrollToBottom, [messages]);
+
+  //send message
   const [input, setInput] = useState('');
 
   const sendMessage = async e => {
@@ -29,7 +41,7 @@ const Chat = ({ messages }) => {
   return (
     <div className='chat'>
       <div className='chat__header'>
-        <Avatar />
+        <Avatar src={`https://avatars.dicebear.com/api/bottts/${seed}.svg`} />
         <div className='chat__headerInfo'>
           <h3>Room Name</h3>
           <p>Last seen at...</p>
@@ -57,6 +69,7 @@ const Chat = ({ messages }) => {
             <span className='chat__timestamp'>{message.timestamp}</span>
           </p>
         ))}
+        <div ref={messagesEndRef} />
       </div>
       <div className='chat__footer'>
         <InsertEmoticon />

@@ -71,6 +71,8 @@ db.once('open', () => {
 
 app.get('/messages/sync', (req, res) => {
   Messages.find((err, data) => {
+    console.log(err);
+    console.log(data);
     err ? res.status(500).send(err) : res.status(200).send(data);
   });
 });
